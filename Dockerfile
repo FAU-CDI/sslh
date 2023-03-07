@@ -2,6 +2,11 @@ FROM alpine:latest as build
 
 ADD . /sslh
 
+
+# HACK HACK HACK to tell the makefile to not rebuild these
+# because the docker container doesn't have conf2struct
+RUN touch /sslh/sslh-conf.c /sslh/sslh-conf.h
+
 RUN \
   apk add \
     gcc \
